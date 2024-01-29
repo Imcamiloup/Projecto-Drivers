@@ -1,32 +1,22 @@
 const { Router } = require('express');
 const driversRouter = Router();
-const fs = require('fs').promises; // Utilizamos la versión promisificada de fs
-const path = require('path');
+const getDriversApi = require('../controllers/getDriversApi');
+const getDriversDB = require('../controllers/getDriversDB');
+const getDriverById = require('../controllers/getDriverById');
 
 
-driversRouter.get('/', async (req, res) => {
-    try {
-      const filePath = path.join(__dirname, '..', '..', 'api', 'db.json');
-      const response = await fs.readFile(filePath, 'utf-8');
-      const data = JSON.parse(response);
-      const drivers = data.drivers.map((driver) => ({
-        id: driver.id,
-        driverRef: driver.driverRef,
-        number: driver.number,
-        code: driver.code,
-        forename: driver.name.forename,
-        surname: driver.name.surname,
-        image: driver.image.url || 'https://cdn.motor1.com/images/mgl/O487B/s1/nuevo-logo-de-f1-2018.webp',
-        dob: driver.dob,
-        natiolality: driver.natiolality,
-        url: driver.url,
-        teams: driver.teams,
-        description: driver.description,
-      }));
-        res.json(drivers);
-    } catch (error) {
+// GET | /drivers/ 
+  driversRouter.get('/', async (req, res) => {
+    try{
+      const apiDrivers = await getDriversApi();
+      console.log('hasta aqui todo bien')
+      const dbDrivers = await getDriversDB(); 
+      const drivers = [...apiDrivers, ...dbDrivers];
+      res.status(200).json(drivers);
+    }
+    catch(error){
       console.error(error);
-      res.status(500).send({ error: 'Error al leer el archivo' });
+      res.status(500).json({ error: 'error al obtener los drivers' });
     }
   });
 
@@ -41,20 +31,33 @@ driversRouter.get('/:idDriver', async (req, res) => {
     const { idDriver } = req.params;
     const id = idDriver;
     try{
-        const filePath = path.join(__dirname, '..', '..', 'api', 'db.json');
-        const response = await fs.readFile(filePath, 'utf-8');
-        const data = JSON.parse(response);
-        const driver = data.drivers.find((driver) => driver.id == id);
-        if(driver){
-            res.json(driver);
-        }
-        else{
-            res.send('No se encontró el driver por id');
-        }
+      const driver = await getDriverById(id);
+      res.status(200).json(driver);
     }
     catch(error){
         console.error(error);
-        res.status(500).send({ error: 'Error al leer el archivo' });
+        res.status(500).send({ error: error.message });
+    }
+});
+
+
+// GET | /drivers/name?="..."
+
+driversRouter.get('/name', async (req, res) => {
+    const { name } = req.query;
+    try{
+      const drivers = await getDrivers();
+      const driver = drivers.find((driver) => driver.forename == name);
+      if(driver){
+        res.status(200).json(driver);
+      }
+      else{
+        res.status(404).json({ error: 'No se encontró el driver por nombre' });
+      }
+    }
+    catch(error){
+        console.error(error);
+        res.status(500).send({ error: error.message });
     }
 });
 
