@@ -11,4 +11,12 @@ server.use(cors());
 
 server.use(router);
 
+server.get('/', (req, res) => {
+    res.send('API is running');
+  });
+
+server.get("/ping",function(req, res){
+    res.send("pong");
+  });
+
 module.exports = server;
