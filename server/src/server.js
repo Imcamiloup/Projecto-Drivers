@@ -5,8 +5,8 @@ const cors = require("cors");
 
 const server = express();
 
-server.use(morgan("dev"));
-server.use(express.json());
+server.use(morgan("dev")); //midleware get
+server.use(express.json()); //midleware post
 server.use(cors());
 
 server.use(router);
