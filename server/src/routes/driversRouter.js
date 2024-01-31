@@ -2,11 +2,11 @@ const { Router } = require('express');
 const driversRouter = Router();
 const getDriversApi = require('../controllers/getDriversApi');
 const getDriversDB = require('../controllers/getDriversDB');
-const getDriverById = require('../controllers/getDriverById');
+const getDriverByIdApi = require('../controllers/getDriverByIdApi');
+const getDriverByIdDB = require('../controllers/getDriverByIdDB');
 const createDrivers = require('../controllers/createDrivers');
-
-
-
+const getDriverByNameApi = require('../controllers/getDriverByNameApi');
+const getDriverByNameDB = require('../controllers/getDriverByNameDB');
 
 // GET | /drivers/ 
   driversRouter.get('/', async (req, res) => {
@@ -14,9 +14,7 @@ const createDrivers = require('../controllers/createDrivers');
       const dbDrivers = await getDriversDB(); 
       const apiDrivers = await getDriversApi();
       const drivers = [...dbDrivers, ...apiDrivers];
-      console.log(drivers);
       res.status(200).json(drivers);
-      console.log('hasta aqui todo bien')
     }
     catch(error){
       console.error(error);
@@ -35,11 +33,16 @@ driversRouter.get('/:idDriver', async (req, res) => {
     const { idDriver } = req.params;
     const id = idDriver;
     try{
-      const driver = await getDriverById(id);
-      res.status(200).json(driver);
+      const dbDriver = await getDriverByIdDB(id);
+      const apiDriver = await getDriverByIdApi(id);
+
+      if (!apiDriver) {
+        res.status(200).json(dbDriver);
+      } else {
+        res.status(200).json(apiDriver);
+      }
     }
     catch(error){
-        console.error(error);
         res.status(500).send({ error: error.message });
     }
 });
@@ -48,22 +51,32 @@ driversRouter.get('/:idDriver', async (req, res) => {
 // GET | /drivers/name?="..."
 
 driversRouter.get('/name/:name', async (req, res) => {
-    const { name } = req.params;
-    try{
-      const drivers = await getDriversApi();
-      const driver = drivers.find((driver) => driver.name == name.surname);
-      if(driver){
-        res.status(200).json(driver);
+  const { name } = req.params;
+  try {
+      const dbDriver = await getDriverByNameDB(name);
+      const apiDriver = await getDriverByNameApi(name);
+      let AllDrivers = [];
+
+      if (dbDriver) {
+          AllDrivers = AllDrivers.concat(dbDriver);
       }
-      else{
-        res.status(404).json({ error: 'No se encontró el driver por apellido' });
+      if (apiDriver) {
+          AllDrivers = AllDrivers.concat(apiDriver);
       }
-    }
-    catch(error){
-        console.error(error);
-        res.status(500).send({ error: error.message });
-    }
+
+      if (AllDrivers.length === 0) {
+          res.status(404).send({ error: 'No se encontró el driver' });
+      } else {
+          res.status(200).json(AllDrivers);
+      }
+  } catch (error) {
+      console.error(error);
+      res.status(500).send({ error: error.message });
+  }
 });
+
+
+
 
 
 //POST | /drivers
@@ -74,10 +87,12 @@ driversRouter.post('/', async (req, res) => {
   const { driverRef , number , code , name , surname, image , dob , nationality , url , teams , description } = req.body;
 
   newDriver = await createDrivers( driverRef , number , code , name , surname , image , dob , nationality , url , teams , description )
-  res.status(200).json(newDriver);
+  res.status(200).json({
+    newDriver,
+    created: 'Driver created successfully',
+  });
   }
   catch(error){
-    //console.error(error);
     res.status(500).send({ error: error.message });
   }
 }
