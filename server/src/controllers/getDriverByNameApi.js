@@ -10,7 +10,7 @@ module.exports = async (name) => {
         if (driver) {
             return driver;
         } else {
-            return 'No se encontró el driver por nombre';
+            throw 'No se encontró el driver por nombre';
         }
     } catch (error) {
         return { error: 'Error al leer el archivo' };

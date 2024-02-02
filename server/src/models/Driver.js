@@ -6,7 +6,7 @@ const { v4: uuidv4 } = require('uuid');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Driver', {
-    idDriver: {
+    id: {
       type: DataTypes.UUID,
       defaultValue: () => uuidv4(),
       primaryKey: true,

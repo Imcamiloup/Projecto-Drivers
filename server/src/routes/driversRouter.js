@@ -87,15 +87,19 @@ driversRouter.post('/', async (req, res) => {
   const { driverRef , number , code , name , surname, image , dob , nationality , url , teams , description } = req.body;
 
   newDriver = await createDrivers( driverRef , number , code , name , surname , image , dob , nationality , url , teams , description )
+
   res.status(200).json({
     newDriver,
     created: 'Driver created successfully',
   });
   }
+
   catch(error){
     res.status(500).send({ error: error.message });
   }
 }
 );
+
+
 
 module.exports = driversRouter;
