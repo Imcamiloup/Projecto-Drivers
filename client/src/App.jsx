@@ -25,13 +25,15 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar/>
-      <Routes>
-        <Route path='/' element={<Home drivers={drivers} onSearch ={onSearch}/>} />
-        <Route path='/about' element={<About/>} />
-        <Route path='/form' element={<Form/>} />
-        <Route path='/detail/:id' element={<Detail/>} />
-      </Routes> 
+      
+        <Navbar/>
+        <Routes>
+          <Route path='/' element={<Home drivers={drivers} onSearch ={onSearch}/>} />
+          <Route path='/about' element={<About/>} />
+          <Route path='/form' element={<Form/>} />
+          <Route path='/detail/:id' element={<Detail/>} />
+        </Routes>
+      
     </div>
   )
 }

@@ -20,7 +20,6 @@ const  Cards = ({drivers, onSearch}) => {
           image={drive.image}
           forename={drive.forename}         
           />
-
         )
       })}
     </div>
