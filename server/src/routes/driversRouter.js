@@ -84,9 +84,9 @@ driversRouter.get('/name/:name', async (req, res) => {
 driversRouter.post('/', async (req, res) => {
  //const name = req.body.name.forename + ' ' + req.body.name.surname;
   try{
-  const { driverRef , number , code , name , surname, image , dob , nationality , url , teams , description } = req.body;
+  const { driverRef , number , code , forename , surname, image , dob , nationality , url , teams , description } = req.body;
 
-  newDriver = await createDrivers( driverRef , number , code , name , surname , image , dob , nationality , url , teams , description )
+  newDriver = await createDrivers( driverRef , number , code , forename , surname , image , dob , nationality , url , teams , description )
 
   res.status(200).json({
     newDriver,

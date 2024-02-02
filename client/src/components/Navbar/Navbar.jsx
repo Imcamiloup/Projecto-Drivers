@@ -19,7 +19,7 @@ const  Navbar = () => {
         <button>About</button>
       </Link>
       <Link to='/form'>
-        <button>Form</button>
+        <button>Login</button>
       </Link>
      
 

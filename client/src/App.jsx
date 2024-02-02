@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Navbar from './components/Navbar/Navbar';
-import Cards from './components/Cards/Cards';
+import Home from './components/Home/Home';
 import About from './components/About/About';
 import Form from './components/Form/Form';
 import Detail from './components/Detail/Detail';
@@ -15,6 +15,7 @@ function App() {
   const onSearch = () => {
     console.log(axios(`http://localhost:3001/drivers`))
     axios (`http://localhost:3001/drivers`)
+    .then(res => res.data)
     .then(data => {
       setDrivers([ ...drivers, data ])
     }
@@ -26,7 +27,7 @@ function App() {
     <div className="App">
       <Navbar/>
       <Routes>
-        <Route path='/' element={<Cards drivers={drivers} onSearch ={onSearch}/>} />
+        <Route path='/' element={<Home drivers={drivers} onSearch ={onSearch}/>} />
         <Route path='/about' element={<About/>} />
         <Route path='/form' element={<Form/>} />
         <Route path='/detail/:id' element={<Detail/>} />

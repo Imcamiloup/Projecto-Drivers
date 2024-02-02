@@ -5,20 +5,20 @@ const  Cards = ({drivers, onSearch}) => {
 
   console.log('driversss:', drivers)
 
-  useEffect(() => {
+  /*useEffect(() => {
     onSearch()
-  }, [])
+  }, [])*/
 
   return (
     <div>
       <h2>Drivers</h2>
       <button onClick={onSearch}>Mostrar Drivers</button>
-      {drivers?.map((drive, index) => {
+      {drivers[0]?.slice(0,20).map((drive, index) => {
         return (
           <Card 
           key={index} 
-          name={drive.name}
-          description={drive.description}
+          image={drive.image}
+          forename={drive.forename}         
           />
 
         )
