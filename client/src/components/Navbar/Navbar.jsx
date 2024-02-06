@@ -12,7 +12,7 @@ const  Navbar = () => {
         paddingBottom:"15px"
       }}>
 
-      <Link to='/'>
+      <Link to='/home'>
         <button>Home</button>
       </Link>
       <Link to='/about'>

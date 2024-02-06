@@ -3,8 +3,9 @@ const { Driver } = require('../db.js');
 module.exports = async (id) => {
     try {
         const driver = await Driver.findOne({
-             where: { idDriver: id } 
-            });
+             where: { id: id } 
+            }); 
+
         if (!driver) {
             throw 'No se encontró el driver por DB';
             
@@ -12,6 +13,6 @@ module.exports = async (id) => {
             return driver
         }
     } catch (error) {
-        return { error: "Problema con la captura del driver por DB", message: error} ;
+        return { error: "Problema con la captura del driver por id de DB", message: error} ;
     }
 }

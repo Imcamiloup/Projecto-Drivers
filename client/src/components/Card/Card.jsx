@@ -2,7 +2,9 @@
 import React from 'react';
 import './Card.css'; // Importa el archivo de estilos CSS
 
-const Card = ({ forename, image }) => {
+const Card = ({ forename, image, surname }) => {
+  const fullName = `${forename} ${surname}`;
+
   return (
     <div className="card-container">
       <img
@@ -10,7 +12,7 @@ const Card = ({ forename, image }) => {
         alt="imagen"
         className="card-image"
       />
-      <h2>{forename}</h2>
+      <h2>{fullName}</h2>
     </div>
   );
 };

@@ -9,22 +9,22 @@ module.exports = async () => {
 
     const uniqueTeams = [];
 
-    data.drivers.forEach((driver) => {
+    await data.drivers.forEach((driver) => {
       if (driver.teams) {
         const splitTeams = driver.teams.split(',');
         splitTeams.forEach((team) => {
           const trimmedTeam = team.trim();
-          if (!uniqueTeams.includes(team)) {
-            uniqueTeams.push(team);
+          if (!uniqueTeams.includes(trimmedTeam)) {
+            uniqueTeams.push( trimmedTeam );
           }
         });
       }
     });
 
-    console.log(uniqueTeams);
+
     return uniqueTeams;
   } catch (error) {
     console.error(error);
-    throw { error: 'Error al leer el archivo', details: error.message };
+    throw { error: 'Error al leer el archivo de la API', details: error.message };
   }
 };

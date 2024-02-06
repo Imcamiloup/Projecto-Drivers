@@ -8,7 +8,20 @@ module.exports = async ( driverRef , number , code , forename , surname , image 
     if ( !driverRef || !number || !code || !forename || !surname || !image || !dob || !nationality || !url || !teams || !description) throw new Error("Faltan datos");
     
     
-    const newDriver = await Driver.create( { driverRef , number , code , forename,  surname , image , dob , nationality , url , description });    //crear el registro en el modelo Driver
+    const newDriver = await Driver.create( 
+        { 
+            driverRef , 
+            number , 
+            code , 
+            forename,  
+            surname , 
+            image , 
+            dob , 
+            nationality , 
+            url , 
+            description 
+        }
+    );    
     newDriver.addTeam(teams);
 
 

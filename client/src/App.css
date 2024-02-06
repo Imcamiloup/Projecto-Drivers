@@ -1,6 +1,13 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.App {
   text-align: center;
+  height: 100vh; /* El 100% de la altura del viewport */
+  width: 100%; /* El 100% del ancho del contenedor padre */
+}
+body, html {
+  margin: 0;
+  padding: 0;
+}
+.App * {
+  margin: 0;
+  padding: 0;
 }

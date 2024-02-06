@@ -3,7 +3,7 @@ const { Driver } = require('../db.js');
 module.exports = async (name) => {
     try {
         const driver = await Driver.findAll({
-             where: { name: name } 
+             where: { forename: name } 
             });
         if (!driver) {
             throw 'No se encontró el driver por DB';

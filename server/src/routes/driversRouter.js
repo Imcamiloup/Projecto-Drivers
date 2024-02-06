@@ -54,14 +54,18 @@ driversRouter.get('/name/:name', async (req, res) => {
   const { name } = req.params;
   try {
       const dbDriver = await getDriverByNameDB(name);
+      console.log("hasta aqui llega")
       const apiDriver = await getDriverByNameApi(name);
       let AllDrivers = [];
 
-      if (dbDriver) {
+      if (dbDriver && !apiDriver) {
           AllDrivers = AllDrivers.concat(dbDriver);
       }
-      if (apiDriver) {
+      if (apiDriver && !dbDriver) {
           AllDrivers = AllDrivers.concat(apiDriver);
+      }
+      if (apiDriver && dbDriver) {
+          AllDrivers = AllDrivers.concat(dbDriver, apiDriver);
       }
 
       if (AllDrivers.length === 0) {
