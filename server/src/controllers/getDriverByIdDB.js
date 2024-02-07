@@ -10,6 +10,6 @@ module.exports = async (id) => {
         return driver || null;
     } catch (error) {
         // Si hay un error, lanza una excepción para manejarlo en el controlador
-        throw new Error("Problema con la captura del driver por id de DB");
+        throw "Problema con la captura del driver por id de DB"
     }
 }

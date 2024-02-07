@@ -18,7 +18,6 @@ const e = require('express');
       res.status(200).json(drivers);
     }
     catch(error){
-      console.error(error);
       res.status(500).json({ error: 'error al obtener los drivers' });
     }
   });
@@ -39,7 +38,7 @@ driversRouter.get('/:idDriver', async (req, res) => {
       try {
           driver = await getDriverByIdDB(id);
       } catch (dbError) {
-          console.error("Error en getDriverByIdDB:", dbError);
+          console.error("Dato en Api:");
           // Si hay un error en la base de datos, sigue con la búsqueda en la API
       }
 

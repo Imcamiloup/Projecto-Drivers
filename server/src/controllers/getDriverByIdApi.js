@@ -26,6 +26,6 @@ module.exports = async (id) => {
         }
     }
     catch(error){
-        return { error: 'No se encontro el driver por Api' };
+        throw { error: 'No se encontro el driver ' };
     }
 }
