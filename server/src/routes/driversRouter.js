@@ -7,6 +7,7 @@ const getDriverByIdDB = require('../controllers/getDriverByIdDB');
 const createDrivers = require('../controllers/createDrivers');
 const getDriverByNameApi = require('../controllers/getDriverByNameApi');
 const getDriverByNameDB = require('../controllers/getDriverByNameDB');
+const e = require('express');
 
 // GET | /drivers/ 
   driversRouter.get('/', async (req, res) => {
@@ -30,21 +31,37 @@ Tiene que incluir los datos del/los team/s del driver al que está asociado.
 Debe funcionar tanto para los drivers de la API como para los de la base de datos.*/
 
 driversRouter.get('/:idDriver', async (req, res) => {
-    const { idDriver } = req.params;
-    const id = idDriver;
-    try{
-      const dbDriver = await getDriverByIdDB(id);
-      const apiDriver = await getDriverByIdApi(id);
+  const { idDriver } = req.params;
+  const id = idDriver;
+  try {
+      let driver = null;
 
-      if (!apiDriver) {
-        res.status(200).json(dbDriver);
-      } else {
-        res.status(200).json(apiDriver);
+      try {
+          driver = await getDriverByIdDB(id);
+      } catch (dbError) {
+          console.error("Error en getDriverByIdDB:", dbError);
+          // Si hay un error en la base de datos, sigue con la búsqueda en la API
       }
-    }
-    catch(error){
-        res.status(500).send({ error: error.message });
-    }
+
+      if (!driver) {
+          try {
+              driver = await getDriverByIdApi(id);
+          } catch (apiError) {
+              console.error("Error en getDriverByIdApi:", apiError);
+              // Si hay un error en la API, devuelve una respuesta de error 404
+              return res.status(404).send({ error: 'No se encontró el driver' });
+          }
+      }
+
+      if (!driver) {
+          // Si no se encuentra ningún conductor, devuelve una respuesta de error 404
+          return res.status(404).send({ error: 'No se encontró el driver' });
+      }
+
+      res.status(200).json(driver);
+  } catch(error) {
+      res.status(500).send({ error: error.message });
+  }
 });
 
 

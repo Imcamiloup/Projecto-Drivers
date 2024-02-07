@@ -65,7 +65,7 @@ function App() {
           <Route path='/home' element={<Home drivers={drivers} onSearch ={onSearch}/>} />
           <Route path='/about' element={<About/>} />
           <Route path='/form' element={<Form login = {login}/>} />
-          <Route path='/detail/:id' element={<Detail/>} />
+          <Route path='/detail/:id' element={<Detail onSearch ={onSearch} drivers={drivers}/>} />
         </Routes>
       
     </div>

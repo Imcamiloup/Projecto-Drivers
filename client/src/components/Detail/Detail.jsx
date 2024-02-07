@@ -4,11 +4,11 @@ import Card from '../Card/Card';
 import styles from './Detail.module.css'; // Importa los estilos del módulo
 import axios from 'axios';
 
-export default function Detail({ character, onSearch }) {
+export default function Detail({ drivers, onSearch }) {
   const { id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/rickandmorty/character/${id}`)
+    axios.get(`http://localhost:3001/drivers/${id}`)
       .then(response => {
         onSearch(response.data);
       })
@@ -22,7 +22,7 @@ export default function Detail({ character, onSearch }) {
     <div className={styles.DetailContainer}>
       <div className={styles.DetailImage}> {/* Aplica la clase del módulo aquí */}
         <Card
-          image={character.image}
+          image={drivers.image}
         />
       </div>
       <div className={styles.DetailInfo}> {/* Aplica la clase del módulo aquí */}

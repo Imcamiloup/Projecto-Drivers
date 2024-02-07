@@ -6,13 +6,10 @@ module.exports = async (id) => {
              where: { id: id } 
             }); 
 
-        if (!driver) {
-            throw 'No se encontró el driver por DB';
-            
-        } else {
-            return driver
-        }
+        // Si no se encuentra el conductor, devuelve null
+        return driver || null;
     } catch (error) {
-        return { error: "Problema con la captura del driver por id de DB", message: error} ;
+        // Si hay un error, lanza una excepción para manejarlo en el controlador
+        throw new Error("Problema con la captura del driver por id de DB");
     }
 }

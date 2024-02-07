@@ -7,12 +7,22 @@ module.exports = async (id) => {
         const response = await fs.readFile(filePath, 'utf-8');
         const data = JSON.parse(response);
         const driver = data.drivers.find((driver) => driver.id == Number(id));
-        console.log(driver);
-        if(driver){
-            return driver;
+        const driverFormat = {
+            id: driver.id,
+            driverRef: driver.driverRef,
+            forename: driver.name.forename,
+            surname: driver.name.surname,
+            description: driver.description,
+            image: driver.image.url || 'https://cdn.motor1.com/images/mgl/O487B/s1/nuevo-logo-de-f1-2018.webp',
+            nationality: driver.nationality,
+            dob: driver.dob,
+        };
+        if(driverFormat){
+            
+            return driverFormat;
         }
         else{
-            return driver;
+            throw 'Id no existe en la API';
         }
     }
     catch(error){
