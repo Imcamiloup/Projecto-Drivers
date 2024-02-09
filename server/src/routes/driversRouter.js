@@ -13,8 +13,9 @@ const e = require('express');
   driversRouter.get('/', async (req, res) => {
     try{
       const dbDrivers = await getDriversDB(); 
+      console.log("dbDrivers", dbDrivers);
       const apiDrivers = await getDriversApi();
-      const drivers = [...dbDrivers, ...apiDrivers];
+      const drivers = dbDrivers? [...dbDrivers, ...apiDrivers]:  [...apiDrivers];
       res.status(200).json(drivers);
     }
     catch(error){

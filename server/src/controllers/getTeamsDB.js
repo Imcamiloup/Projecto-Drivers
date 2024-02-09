@@ -2,7 +2,7 @@ const getTeamsApi = require('./getTeamsApi');
 const { Team } = require('../db.js');
 module.exports = async () => {
     try {
-        const apiTeams = await getTeamsApi();
+        const apiTeams = await getTeamsApi(        );
         //.map a los elementos para crearlos en la base de datos
          apiTeams.forEach( async (team) => {
             await Team.create({name: team});

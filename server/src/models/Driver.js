@@ -34,5 +34,5 @@ module.exports = (sequelize) => {
     dob: {
       type: DataTypes.STRING
     },
-  });
+  },{timestamps: false});
 };

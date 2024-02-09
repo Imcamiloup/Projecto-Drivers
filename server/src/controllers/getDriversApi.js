@@ -14,20 +14,20 @@ module.exports = async () => {
         const data = JSON.parse(response);
         
         // Mapeamos y transformamos los datos de los conductores
-        const drivers = data.drivers.map(({ id, driverRef, number, code, name, image, dob, nationality, url, teams, description }) => ({
+        const drivers = data.drivers.map(({ id, driverRef, name, image, dob, nationality, url, teams, description }) => ({
             id,
             driverRef,
-            number,
-            code,
             forename: name.forename,
             surname: name.surname,
+            description: description || 'No description available',
             // Si la URL de la imagen no está presente, se utiliza una URL predeterminada
             image: image.url || 'https://cdn.motor1.com/images/mgl/O487B/s1/nuevo-logo-de-f1-2018.webp',
-            dob,
             nationality,
-            url,
-            teams,
-            description,
+            dob,
+            teams: teams ? teams.split(',').map((team) =>  
+                ( {name: team.trim()})
+            ) : [],
+            
         }));
 
         // Devolvemos el resultado final

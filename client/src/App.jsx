@@ -12,9 +12,11 @@ import './App.css'
 
 function App() {
   const [drivers, setDrivers] = useState([])
+  const [driverName, setDriverName] = useState([])
   const [access, setAccess] = useState(false)
   const location = useLocation();
   const navigate = useNavigate();
+
 
 
   async function login(userData) {
@@ -33,12 +35,11 @@ function App() {
   }
   
 
-  useEffect(() => {
-    if (!access) navigate('/');
-    else navigate('/home');
+ const searchDriverName =  (name) => {
+   axios(`http://localhost:3001/drivers/name/${name}`)
+    .then(res => res.data)
+  .then(data => { setDriverName([ ...driverName, data ])})
   }
-  , 
-  [access, navigate]);
 
   
  
@@ -46,26 +47,27 @@ function App() {
 
 
 
-  const onSearch = () => {
+  const searchDrivers = () => {
     axios (`http://localhost:3001/drivers`)
     .then(res => res.data)
     .then(data => {
       setDrivers([ ...drivers, data ])
-    }
-      )
+    })
   }
   
 
   return (
     <div className="App">
       
-      {location.pathname !== '/' && <Navbar onSearch={onSearch} />}
+      {location.pathname !== '/' && <Navbar onSearch={searchDriverName} />}
         <Routes>
-        <Route path='/' element={<Landing login = {login}  drivers={drivers} onSearch ={onSearch}/>} />
-          <Route path='/home' element={<Home drivers={drivers} onSearch ={onSearch}/>} />
+        <Route path='/' element={<Landing login = {login}  drivers={drivers} onSearch ={searchDrivers}/>} />
+          <Route path='/home' element={<Home drivers={drivers} driverName={driverName} onSearch = {searchDrivers} />} />
           <Route path='/about' element={<About/>} />
           <Route path='/form' element={<Form login = {login}/>} />
-          <Route path='/detail/:id' element={<Detail onSearch ={onSearch} drivers={drivers}/>} />
+          <Route path='/detail/:id' element={<Detail/>} />
+
+
         </Routes>
       
     </div>

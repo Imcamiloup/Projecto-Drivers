@@ -1,0 +1,17 @@
+/* Estilos para el detalle del personaje */
+.DetailContainer {
+    display: flex;
+    justify-content: flex-start; /* Coloca la imagen a la izquierda */
+    align-items: stretch; /* Ajusta la altura del contenedor */
+  }
+  
+  .DetailImage {
+    flex: 1; /* Ocupa el espacio necesario, pero permite que la información tome el resto del ancho */
+  }
+  
+  .DetailInfo {
+    flex: 2; /* Ocupa el doble del espacio en comparación con la imagen */
+    padding: 16px;
+    background-color: #f7f7f7;
+  }
+  

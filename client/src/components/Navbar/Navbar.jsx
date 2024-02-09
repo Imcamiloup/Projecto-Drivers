@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import SearchBar from '../SearchBar/SearchBar';
 
-const  Navbar = () => {
+const  Navbar = ({onSearch}) => {
   return (
     <div
       style ={{
@@ -21,6 +22,7 @@ const  Navbar = () => {
       <Link to='/form'>
         <button>Login</button>
       </Link>
+      <SearchBar onSearch={onSearch}/>
      
 
     </div>
