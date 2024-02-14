@@ -1,29 +1,11 @@
-import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import useDriver from '../../hooks/useDriver';
 import styles from './Detail.module.css'; 
-import { useState } from 'react';
-import axios from 'axios';
-
 
 
 export default function Detail() {
 
-  const { id } = useParams();
-  const [driver, setDriver] = useState([]);
-  
-  
-  useEffect(() => {
-    axios(`http://localhost:3001/drivers/${id}`)
-    .then(({ data }) => {
-      if (data.surname) {
-        setDriver(data);
-      } else {
-        window.alert('No hay drivers con ese ID');
-      }
-    });
-    return setDriver({});
-  }, [id]);
-  
+  const {driver} = useDriver();
+
   const fullName = `${driver.forename} ${driver.surname}`;
 
   return (

@@ -3,8 +3,8 @@
 //definir estado inicial
 const initialState = {
     drivers : [],
-    loading : false,
-    error : null
+    driverDetail : {},
+    driverName : []
 }
 
 function rootReducer(state = initialState, action){
@@ -24,6 +24,21 @@ function rootReducer(state = initialState, action){
                 ...state,
                 drivers: state.drivers.filter(driver => driver.id !== action.payload)
             };
+        case "GET_DRIVER_DETAIL":
+            return {
+                ...state,
+                driverDetail: action.payload
+            };
+        case "SEARCH_DRIVER_NAME":
+            return {
+                ...state,
+                driverName: action.payload,
+            };   
+        case "CLEAN_DRIVER_DETAIL":
+            return {
+                ...state,
+                driverDetail: {},
+            }; 
         default:
             return {
                 ...state

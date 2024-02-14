@@ -13,7 +13,7 @@ module.exports = async () => {
             }}
         ); 
         if (drivers.length === 0) {
-            throw 'No se encontraron drivers';
+            return undefined;
             
         } else {
             return drivers

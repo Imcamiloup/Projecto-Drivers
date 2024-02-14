@@ -17,6 +17,7 @@ const { Driver } = require('../db.js');
       console.log("dbDrivers", dbDrivers);
       const apiDrivers = await getDriversApi();
       const drivers = dbDrivers? [...dbDrivers, ...apiDrivers]:  [...apiDrivers];
+      console.log("drivers", drivers);
       res.status(200).json(drivers);
     }
     catch(error){

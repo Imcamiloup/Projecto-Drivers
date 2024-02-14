@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
 
-const  Navbar = ({onSearch}) => {
+const  Navbar = () => {
   return (
     <div
       style ={{
@@ -22,7 +22,7 @@ const  Navbar = ({onSearch}) => {
       <Link to='/login'>
         <button>Login</button>
       </Link>
-      <SearchBar onSearch={onSearch}/>
+      <SearchBar />
      
 
     </div>

@@ -1,4 +1,4 @@
-import { useState , useEffect} from 'react'
+import { useState } from 'react'
 import Navbar from './components/Navbar/Navbar';
 import Home from './views/Home/Home';
 import About from './views/About/About';
@@ -11,8 +11,6 @@ import axios from 'axios'
 import './App.css'
 
 function App() {
-  const [drivers, setDrivers] = useState([])
-  const [driverName, setDriverName] = useState([])
   const [access, setAccess] = useState(false)
   const location = useLocation();
   const navigate = useNavigate();
@@ -35,26 +33,14 @@ function App() {
   }
   
 
- const searchDriverName =  (name) => {
-   axios(`http://localhost:3001/drivers/name/${name}`)
-    .then(res => res.data)
-  .then(data => { setDriverName([ data ])})
-  .then(console.log("driver:",driverName))
-  }
-
-  
- 
-
-
-
 
   return (
     <div className="App">
       
-      {location.pathname !== '/' && <Navbar onSearch={searchDriverName} />}
+      {location.pathname !== '/' && <Navbar  />}
         <Routes>
-        <Route path='/' element={<Landing login = {login}  drivers={drivers} />} />
-          <Route path='/home' element={<Home drivers={drivers} driverName={driverName}  />} />
+        <Route path='/' element={<Landing />} />
+          <Route path='/home' element={<Home  />} />
           <Route path='/about' element={<About/>} />
           <Route path='/login' element={<Login login = {login}/>} />
           <Route path='/detail/:id' element={<Detail/>} />
