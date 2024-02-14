@@ -8,6 +8,7 @@ const createDrivers = require('../controllers/createDrivers');
 const getDriverByNameApi = require('../controllers/getDriverByNameApi');
 const getDriverByNameDB = require('../controllers/getDriverByNameDB');
 const e = require('express');
+const { Driver } = require('../db.js');
 
 // GET | /drivers/ 
   driversRouter.get('/', async (req, res) => {
@@ -121,6 +122,23 @@ driversRouter.post('/', async (req, res) => {
 }
 );
 
+driversRouter.put('/', async (req, res) => {
+  try{
+    const { id, driverRef , number , code , forename , surname, image , dob} = req.body;
 
+    const driver = await Driver.update({ id:id ,driverRef: driverRef, number: number, code: code, forename: forename, surname: surname, image: image, dob: dob},{where: {id: id}});
+    driver.driverRef = driverRef;
+    driver.number = number;
+    driver.code = code;
+    driver.forename = forename;
+    driver.surname = surname;
+    driver.image = image;
+    driver.dob = dob;
+    res.status(200).json(driver);
+  }
+  catch(error){
+    res.status(500).send({ error: error.message });
+  }
+});
 
 module.exports = driversRouter;

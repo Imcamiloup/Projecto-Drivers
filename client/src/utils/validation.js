@@ -11,24 +11,42 @@ function validateEmail(email) {
  function validatePassword(password) {
     // Verifica que la contraseña tenga al menos un número y longitud entre 6 y 10
     const hasNumber = /\d/.test(password);
-    const isValidLength = password.length >= 6 && password.length <= 10;
+    const isValidLength = password.length >= 6 && password.length <= 10 && !password.includes(' ') && password.length !== 0;
     return hasNumber && isValidLength;
  }
  
- function validate(email, password) {
-    const errors = {};
+ function validate(form, setErrors, errors) {
+
  
-    if (!email) {
-       errors.email = 'El email no puede estar vacío.';
-    } else if (!validateEmail(email)) {
-       errors.email = 'Ingrese un email válido.';
-    } else if (email.length > 35) {
-       errors.email = 'El email no puede tener más de 35 caracteres.';
-    }
- 
-    if (!validatePassword(password)) {
-       errors.password = 'La contraseña debe tener entre 6 y 10 caracteres y al menos un número.';
-    }
+      const { email, password } = form;
+      if (email.length === 0 ) {
+         errors.email = 'El email es obligatorio';
+      } else{
+         if (!validateEmail(email)) {
+            errors.email = 'El email no es válido';
+          } else {
+             delete errors.email;
+             }
+      }
+      
+      if (password.length === 0) {
+         errors.password = 'La contraseña es obligatoria';
+         }
+      else{
+         if (!validatePassword(password)) {
+            errors.password = 'La contraseña no es válida';
+            }
+         else {
+            delete errors.password;
+            }
+      }
+
+      
+
+      setErrors({ ...errors });
+
+
+  
  
     return errors;
  }

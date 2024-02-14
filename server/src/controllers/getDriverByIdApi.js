@@ -16,6 +16,11 @@ module.exports = async (id) => {
             image: driver.image.url || 'https://cdn.motor1.com/images/mgl/O487B/s1/nuevo-logo-de-f1-2018.webp',
             nationality: driver.nationality,
             dob: driver.dob,
+            Teams: driver.teams ? driver.teams.split(',').map((team,index) =>  
+                ( {
+                    id:index+1,
+                    name: team.trim()})
+            ) : [],
         };
         if(driverFormat){
             

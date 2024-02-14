@@ -1,6 +1,6 @@
 import React from 'react';
-import Form from '../Login/Login';
-import Home from '../../components/Home/Home';
+import Form from '../../components/Login/Login';
+import Home from '../Home/Home';
 import { Link } from 'react-router-dom';
 import styles from './Landing.module.css';
 

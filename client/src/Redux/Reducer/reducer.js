@@ -1,33 +1,33 @@
 //importar actions-types
 
 //definir estado inicial
-let initialState = {
-    data : [],
+const initialState = {
+    drivers : [],
     loading : false,
     error : null
 }
 
 function rootReducer(state = initialState, action){
     switch(action.type){
-        case 'GET_DATA':
+        case 'GET_DRIVERS':
             return{
                 ...state,
-                loading: true
-            }
-        case 'GET_DATA_SUCCESS':
-            return{
+                drivers: action.payload
+            };
+        case "ADD_DRIVER":
+            return {
                 ...state,
-                loading: false,
-                data: action.payload
-            }
-        case 'GET_DATA_ERROR':
-            return{
+                drivers: [...state.drivers, action.payload]
+            };
+        case "DELETE_DRIVER":
+            return {
                 ...state,
-                loading: false,
-                error: action.payload
-            }
+                drivers: state.drivers.filter(driver => driver.id !== action.payload)
+            };
         default:
-            return state
+            return {
+                ...state
+            }
     }
 }
 

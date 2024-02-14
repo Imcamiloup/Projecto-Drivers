@@ -24,7 +24,7 @@ module.exports = async () => {
             image: image.url || 'https://cdn.motor1.com/images/mgl/O487B/s1/nuevo-logo-de-f1-2018.webp',
             nationality,
             dob,
-            teams: teams ? teams.split(',').map((team) =>  
+            Teams: teams ? teams.split(',').map((team) =>  
                 ( {name: team.trim()})
             ) : [],
             

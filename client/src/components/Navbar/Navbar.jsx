@@ -19,7 +19,7 @@ const  Navbar = ({onSearch}) => {
       <Link to='/about'>
         <button>About</button>
       </Link>
-      <Link to='/form'>
+      <Link to='/login'>
         <button>Login</button>
       </Link>
       <SearchBar onSearch={onSearch}/>
