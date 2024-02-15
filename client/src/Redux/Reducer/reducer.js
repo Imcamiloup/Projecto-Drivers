@@ -4,7 +4,8 @@
 const initialState = {
     drivers : [],
     driverDetail : {},
-    driverName : []
+    driverName : [],
+    teams: [],
 }
 
 function rootReducer(state = initialState, action){
@@ -12,7 +13,8 @@ function rootReducer(state = initialState, action){
         case 'GET_DRIVERS':
             return{
                 ...state,
-                drivers: action.payload
+                drivers: action.payload,
+               
             };
         case "ADD_DRIVER":
             return {
@@ -39,6 +41,33 @@ function rootReducer(state = initialState, action){
                 ...state,
                 driverDetail: {},
             }; 
+
+        case "CLEAN_DRIVER_NAME":
+            return {
+                ...state,
+                driverName: [],
+            };
+
+        case "NO_RESULTS_FOUND":
+            return {
+                ...state,
+                driverName: [],
+            };
+
+        case "GET_TEAMS":
+            return {
+                ...state,
+                teams: action.payload,
+            };
+
+        case "FILTER_BY_TEAM":
+            return {
+                ...state,
+                drivers: action.payload,
+            }
+
+        
+            
         default:
             return {
                 ...state

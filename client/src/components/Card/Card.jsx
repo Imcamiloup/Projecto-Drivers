@@ -12,7 +12,7 @@ const Card = ({ id ,forename, image, surname, teams }) => {
       <h2 className='card-title'>{fullName}</h2>
       <div className="card-content">
         <h3>Teams:</h3>
-        {teams?.map((team) => <p>{team.name}</p>)}
+        {teams?.map((team , index) => <p key={index}>{team.name}</p>)}
       </div>
       
       <Link to={`/detail/${id}`}>

@@ -8,6 +8,7 @@ const SearchBar = () => {
     const dispatch = useDispatch();
 
     const handleChange = (event) => {
+        event.preventDefault();
         setName(event.target.value);
     }
 

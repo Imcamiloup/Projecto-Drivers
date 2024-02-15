@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDriverDetail, cleanDriverDetail, getDrivers } from "./../Redux/Actions/actions";
+import { getDriverDetail, cleanDriverDetail, getDrivers} from "./../Redux/Actions/actions";
 
 const useDriver = () => {
 
@@ -15,7 +15,10 @@ const useDriver = () => {
 
     useEffect(() => {
         dispatch(getDrivers());
-    }, []);
+        return () => {
+          dispatch(cleanDriverDetail());
+        };
+    }, [dispatch]);
 
     useEffect(() => {
         dispatch(getDriverDetail(id));

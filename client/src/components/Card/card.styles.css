@@ -3,7 +3,11 @@
     position: relative; /* Añade un posicionamiento relativo para los elementos hijos */
     display: flex;
     flex-direction: column;
-    background-color: #d0d3da;
+    background: linear-gradient(
+        to left,
+        rgba(105, 97, 97, 0.8) 0%,
+        rgba(223, 217, 217, 0.8) 80%
+    );
     border: 2px solid #bd3223;
     border-radius: 8px;
     padding: 1rem;

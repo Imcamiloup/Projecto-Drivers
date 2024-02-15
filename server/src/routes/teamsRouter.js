@@ -5,10 +5,10 @@ const getTeamsDB = require('../controllers/getTeamsDB');
 teamsRouter.get('/' , async (req, res) => {
     try{
         const apiTeams = await getTeamsDB();   
-        console.log(apiTeams);   
+        //console.log(apiTeams);   
 
         if (apiTeams){
-            console.log(apiTeams);
+            //console.log(apiTeams);
             res.status(200).json(apiTeams);
         }
         else{

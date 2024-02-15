@@ -7,8 +7,8 @@ module.exports = async () => {
     const response = await fs.readFile(filePath, 'utf-8');
     const data = JSON.parse(response);
 
+    
     const uniqueTeams = [];
-
     await data.drivers.forEach((driver) => {
       if (driver.teams) {
         const splitTeams = driver.teams.split(',');

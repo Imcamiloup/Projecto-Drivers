@@ -6,6 +6,9 @@ const DELETE_DRIVER = 'DELETE_DRIVER';
 const GET_DRIVER_DETAIL = 'GET_DRIVER_DETAIL';
 const SEARCH_DRIVER_NAME = 'SEARCH_DRIVER_NAME';
 const CLEAN_DRIVER_DETAIL = 'CLEAN_DRIVER_DETAIL';
+const CLEAN_DRIVER_NAME = 'CLEAN_DRIVER_NAME';
+const GET_TEAMS = 'GET_TEAMS';
+const FILTER_BY_TEAM = 'FILTER_BY_TEAM';
 
 export const getDrivers = () => {
     return function(dispatch){
@@ -48,11 +51,36 @@ export const searchDriverName = (name) => {
         .then(data => {
             dispatch({type: SEARCH_DRIVER_NAME, payload: data})
         })
+
     }
 }
 
 export const cleanDriverDetail = () => {
     return {
         type: CLEAN_DRIVER_DETAIL
+    }
+}
+
+export const getTeams =()=>{
+    return function(dispatch){
+        fetch('http://localhost:3001/teams')
+        .then(response => response.json())
+        .then(data => {
+            dispatch({type: GET_TEAMS, payload: data})
+        })
+    }
+}
+
+
+export const cleanDriverName = () => {
+    return {
+        type: CLEAN_DRIVER_NAME,
+    }
+}
+
+export const filterByTeam =  (drivers) => {
+    return {
+        type: FILTER_BY_TEAM,
+        payload: drivers
     }
 }
