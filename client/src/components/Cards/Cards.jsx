@@ -1,6 +1,6 @@
 import Card from '../Card/Card';
 import useDriver from '../../hooks/useDriver';
-import './Cards.css'; // Importa la hoja de estilos
+import './cards.styles.css'; // Importa la hoja de estilos
 
 const Cards = () => {
 
@@ -9,7 +9,7 @@ const Cards = () => {
 
   return (
     <div className="cards-container"> {/* Aplica la clase cards-container */}
-      <h2 className="cards-title">Drivers</h2>
+    <hr /> <h1 className='card-title'> DRIVERS</h1> <hr />
       {driverName[0] ? (
         driverName.map((drive) => (
           <Card

@@ -8,7 +8,6 @@ import Landing from './views/Landing/Landing';
 import {Routes, Route, useLocation , useNavigate} from 'react-router-dom';
 import axios from 'axios'
 
-import './App.css'
 
 function App() {
   const [access, setAccess] = useState(false)

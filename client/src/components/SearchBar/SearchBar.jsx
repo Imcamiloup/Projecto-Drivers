@@ -14,7 +14,7 @@ const SearchBar = () => {
 
     return (
         <div>
-            <input type='text' onChange={handleChange}/>
+            <input placeholder='' type='text' onChange={handleChange}/>
             <button  onClick={() => dispatch(searchDriverName(name))}>
                 Buscar 
             </button>

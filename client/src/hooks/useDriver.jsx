@@ -32,7 +32,6 @@ const useDriver = () => {
         driverName,
         drivers,
         driver,
-        id,
     }
 };
 

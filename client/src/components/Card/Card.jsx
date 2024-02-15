@@ -1,7 +1,7 @@
 // Card.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Card.css'; // Importa el archivo de estilos CSS
+import './card.styles.css'; // Importa el archivo de estilos CSS
 
 const Card = ({ id ,forename, image, surname, teams }) => {
   const fullName = `${forename} ${surname}`;
@@ -9,19 +9,19 @@ const Card = ({ id ,forename, image, surname, teams }) => {
   return (
     <div className="card-container">
       <img className="card-image" src={image} alt="imagen" />
-      <h2>{fullName}</h2>
-      <span>Teams:</span> {teams?.map((team)=> <span>{team.name}</span>)}
-      <p></p>
+      <h2 className='card-title'>{fullName}</h2>
+      <div className="card-content">
+        <h3>Teams:</h3>
+        {teams?.map((team) => <p>{team.name}</p>)}
+      </div>
       
       <Link to={`/detail/${id}`}>
-        <button className="detail-button">Ver detalle</button>
+        <button className="card-button">Ver detalle</button>
       </Link>
-
-      <hr />-----------------------<hr />
     </div>
-    
-
   );
 };
+
+
 
 export default Card;

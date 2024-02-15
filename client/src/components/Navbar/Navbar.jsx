@@ -1,17 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
+import './navbar.styles.css';
 
 const  Navbar = () => {
   return (
-    <div
-      style ={{
-        display: "flex", 
-        justifyContent: "space-around", 
-        alignItems: "center", 
-        backgroundColor:"blue", 
-        paddingBottom:"15px"
-      }}>
+    <div className="search-box">
 
       <Link to='/home'>
         <button>Home</button>
