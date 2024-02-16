@@ -10,6 +10,8 @@ const useDriver = () => {
     const driverName = useSelector((state) => state.driverName);
     const driver = useSelector((state) => state.driverDetail);
     const drivers = useSelector((state) => state.drivers);
+    const currentPage = useSelector((state) => state.currentPage);
+    const driversPerPage = useSelector((state) => state.driversPerPage);
     
     const dispatch = useDispatch();
 

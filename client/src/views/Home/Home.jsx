@@ -18,19 +18,10 @@ const Home = () => {
 
     console.log('teams:',teams)
 
-    const filterTeams = (team) =>{
-        const filtered = drivers.filter((driver) => {
-            return driver.Teams.includes({
-                name: team
-            })
 
-        });
-        console.log('filetered:',filtered);
-        return dispatch(filterByTeam(filtered));
-    }
+
     
 
-    const copyDrivers = useSelector(state => state.driversCopy);
 
 
 
@@ -38,11 +29,12 @@ const Home = () => {
         <div className='home'>
             <h1 className='home-title'> Home</h1>
             <select onChange={(event)=>{
-                filterTeams(event.target.value);
+                dispatch(filterByTeam(event.target.value));
             }} >
 
                 {teams?.map((team) => 
-                    <option key={team.id} value={team.id}>
+                    <option key={team.id} value={team.name}>
+                        
                         {team.name}
                     </option>
                 )}

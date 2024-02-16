@@ -6,6 +6,7 @@ const initialState = {
     driverDetail : {},
     driverName : [],
     teams: [],
+    driversCopy: []
 }
 
 function rootReducer(state = initialState, action){
@@ -64,14 +65,47 @@ function rootReducer(state = initialState, action){
             return {
                 ...state,
                 drivers: action.payload,
+            };
+2
+        case "ORDER DRIVERS":
+            let orderDrivers;
+            if (payload === "A"){
+                orderDrivers = state.drivers.sort((a,b) => {
+                    if(a.name > b.name){
+                        return 1;
+                    }
+                    if(a.name < b.name){
+                        return -1;
+                    }
+                    return 0;
+                });
             }
-
-        
+            if (payload === "D"){
+                orderDrivers = state.drivers.sort((a,b) => {
+                    if(a.name > b.name){
+                        return -1;
+                    }
+                    if(a.name < b.name){
+                        return 1;
+                    }
+                    return 0;
+                });
+            }
+            return {
+                ...state,
+                drivers: orderDrivers
+            };
+        case "CHANGE_PAGE":
+            return {
+                ...state,
+                currentPage: action.payload
+            };
+    
             
         default:
             return {
                 ...state
-            }
+            }   
     }
 }
 

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
 import { cleanDriverName } from '../../Redux/Actions/actions';
 import { useDispatch } from 'react-redux';
+import { getDrivers } from '../../Redux/Actions/actions';
 
 import './navbar.styles.css';
 const  Navbar = () => {
@@ -11,6 +12,7 @@ const  Navbar = () => {
 
   const handleHomeClick = () => {
     dispatch(cleanDriverName()); // Resetea el estado driverName al valor inicial
+    dispatch(getDrivers()); // Obtiene todos los drivers
   };
 
   return (
