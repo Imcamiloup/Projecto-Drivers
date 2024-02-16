@@ -5,6 +5,7 @@ import About from './views/About/About';
 import Login from './components/Login/Login';
 import Detail from './views/Detail/Detail';
 import Landing from './views/Landing/Landing';
+import Create from './components/Create/Create';
 import {Routes, Route, useLocation , useNavigate} from 'react-router-dom';
 import axios from 'axios'
 
@@ -43,6 +44,7 @@ function App() {
           <Route path='/about' element={<About/>} />
           <Route path='/login' element={<Login login = {login}/>} />
           <Route path='/detail/:id' element={<Detail/>} />
+          <Route path='/create' element={<Create/>} />
         </Routes>
       
     </div>

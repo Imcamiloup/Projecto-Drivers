@@ -29,8 +29,8 @@ const  Navbar = () => {
       <Link to='/about'>
         <button>About</button>
       </Link>
-      <Link to='/login'>
-        <button>Login</button>
+      <Link to='/create'>
+        <button>Create</button>
       </Link>
       <SearchBar />
      

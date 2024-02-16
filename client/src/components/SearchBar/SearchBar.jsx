@@ -17,7 +17,7 @@ const SearchBar = () => {
         <div>
             <input placeholder='' type='text' onChange={handleChange}/>
             <button  onClick={() => dispatch(searchDriverName(name))}>
-                Buscar 
+                Search 
             </button>
         </div>
     );
