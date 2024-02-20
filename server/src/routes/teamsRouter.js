@@ -4,11 +4,9 @@ const getTeamsDB = require('../controllers/getTeamsDB');
 
 teamsRouter.get('/' , async (req, res) => {
     try{
-        const apiTeams = await getTeamsDB();   
-        //console.log(apiTeams);   
+        const apiTeams = await getTeamsDB();    
 
         if (apiTeams){
-            //console.log(apiTeams);
             res.status(200).json(apiTeams);
         }
         else{
@@ -16,7 +14,6 @@ teamsRouter.get('/' , async (req, res) => {
         }
     }
     catch(error){
-        console.log(error);
         res.status(500).json({ error: 'error al obtener los teams'});
     }
 })

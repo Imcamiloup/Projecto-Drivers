@@ -1,16 +1,27 @@
-/* Cards.css */
+/* cards.styles.css */
+
 .cards-container {
-  display : flex;
+  display: flex;
   width: 85vw;
-  margin: 0 auto;
+  margin: 20px auto 0; /* Ajusta el margen superior */
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 15px;
-  
+  border-top: 2px solid #B42219; /* Agrega un borde superior */
+  padding-top: 20px; /* Ajusta el espacio entre el borde superior y las tarjetas */
+}
 
+.card-title {
+  font-size: 1.5rem;
+}
 
-  }
-  .card-title {
-    font-size: 1.5rem;
+.pagination {
+  display: flex;
+  justify-content: center; /* Centra los elementos horizontalmente */
+  margin-top: 20px; /* Agrega espacio entre las tarjetas y la paginación */
+  margin-bottom: 20px; /* Agrega margen inferior */
+}
 
+.pagination button {
+  margin: 0 10px; /* Ajusta el espacio entre los botones de la paginación */
 }

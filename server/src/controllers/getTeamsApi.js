@@ -24,7 +24,6 @@ module.exports = async () => {
 
     return uniqueTeams;
   } catch (error) {
-    console.error(error);
     throw { error: 'Error al leer el archivo de la API', details: error.message };
   }
 };

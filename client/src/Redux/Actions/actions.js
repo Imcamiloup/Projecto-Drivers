@@ -107,14 +107,12 @@ export const paginateDrivers = (page, pageSizes) => {
         .then(data => {
             const startIndex = (page - 1) * pageSizes;
             const paginatedDrivers = data.slice(startIndex, startIndex + pageSizes);
-            console.log('paginatedDrivers:', paginatedDrivers);
             dispatch({type: PAGINATE_DRIVERS, payload: paginatedDrivers})
         })
     }
 }
 
 export const page = (pageNumber) => {
-    console.log('pageNumber:', pageNumber);
     return {
         type: CURRENT_PAGE,
         payload: pageNumber

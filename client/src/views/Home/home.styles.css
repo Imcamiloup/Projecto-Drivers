@@ -22,10 +22,18 @@ body{
     justify-content: center;
     height: 100vh;
 }
-.home-title{
-    color: #03072d;
-    font-family: 'Roboto';   
+.home-title {
+  color: #8abe46; /* Color del texto */
+  font-weight: bold;
+  font-size: 2.5rem; /* Tamaño de la fuente */
+  text-transform: uppercase; /* Convertir texto a mayúsculas */
+  background: linear-gradient(to right, #ff0000, #ffffff, #00a4e4); /* Degradado de colores */
+  -webkit-background-clip: text; /* Clip de texto para aplicar el degradado (webkit) */
+  background-clip: text; /* Clip de texto para aplicar el degradado (estándar) */
+  color: rgba(134, 52, 52, 0.7); /* Color de fondo del texto menos transparente */
 }
+
+  
 
 .filter-container {
     display: flex;

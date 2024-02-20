@@ -1,0 +1,18 @@
+/* About.css */
+.about-container {
+    color: #100a51;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .about-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .about-description {
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+  

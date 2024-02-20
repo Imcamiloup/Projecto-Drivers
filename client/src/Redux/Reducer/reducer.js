@@ -100,7 +100,6 @@ function rootReducer(state = initialState, action){
                 drivers: action.payload
             };
         case "CURRENT_PAGE":
-            console.log('action.payload:', action.payload);
             return {
                 ...state,
                 currentPage: action.payload

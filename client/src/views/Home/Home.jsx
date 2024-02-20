@@ -23,9 +23,8 @@ const Home = () => {
 
     return (
         <div className='home'>
-            <h1 className='home-title'> Home</h1>
+            <h1 className='home-title'> Drivers</h1>
             <div className="select-container">
-                <span>Filtrar por equipo:</span>
                 <select onChange={(event) => {
                     dispatch(filterByTeam(event.target.value));
                 }}>
@@ -41,7 +40,7 @@ const Home = () => {
                 <span>{currentPage}</span>
                 <button onClick={() => handlePageChange(currentPage + 1)}   >Next</button>
             </div>
-            <Cards  drivers = {drivers}  />
+            <Cards  drivers = {drivers} currentPage={currentPage} handlePageChange={handlePageChange}/>
         </div>
     );
 };

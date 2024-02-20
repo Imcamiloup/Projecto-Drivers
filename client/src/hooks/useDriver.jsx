@@ -36,7 +36,6 @@ const useDriver = () => {
       useEffect(() => {
         // Paginar los conductores cada vez que currentPage cambia
         const pageSize = 9;
-        console.log('currentPage4:', currentPage);
         dispatch(paginateDrivers(currentPage, pageSize));
     }, [currentPage]);
 

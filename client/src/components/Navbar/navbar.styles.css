@@ -1,8 +1,38 @@
-.search-box {
-    display: "flex";
-    justify-content: "space-around";
-    align-items: "center";
-    background-color: "#B42219";
-    padding-bottom:"2px";
-    
-}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #B42219;
+    padding: 10px 20px; /* Ajusta el espaciado según sea necesario */
+  }
+  
+  .navbar-link {
+    text-decoration: none;
+    color: white;
+    margin-right: 10px; /* Ajusta el margen entre los botones */
+    font-weight: bold; /* Opcional: Puedes cambiar el peso de la fuente */
+  }
+  
+  .navbar-link:hover {
+    color: #8a8778; /* Cambia el color al pasar el mouse por encima */
+  }
+  
+  .search-box {
+    flex: 1; /* La barra de búsqueda ocupa todo el espacio disponible */
+  }
+  
+  .button {
+    background-color: #FFD700; /* Cambia el color de fondo del botón */
+    color: #B42219; /* Cambia el color del texto del botón */
+    border: none;
+    padding: 8px 16px; /* Ajusta el espaciado interno del botón */
+    border-radius: 5px; /* Ajusta la curvatura de los bordes */
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* Agrega una transición suave al cambiar los colores */
+  }
+  
+  .button:hover {
+    background-color: #B42219; /* Cambia el color de fondo al pasar el mouse por encima */
+    color: #FFD700; /* Cambia el color del texto al pasar el mouse por encima */
+  }
+  

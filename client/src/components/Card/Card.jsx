@@ -16,7 +16,7 @@ const Card = ({ id ,forename, image, surname, teams }) => {
       </div>
       
       <Link to={`/detail/${id}`}>
-        <button className="card-button">Ver detalle</button>
+        <button className="card-button">+</button>
       </Link>
     </div>
   );
