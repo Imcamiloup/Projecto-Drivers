@@ -2,6 +2,7 @@ import React from 'react';
 import useDriver from '../../hooks/useDriver';
 import styles from './detail.module.css'; // Importa los estilos CSS
 
+
 export default function Detail() {
   const { driver } = useDriver();
   const fullName = `${driver.forename} ${driver.surname}`;

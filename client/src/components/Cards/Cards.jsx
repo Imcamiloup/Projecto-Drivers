@@ -1,19 +1,20 @@
 import Card from '../Card/Card';
+import { useEffect, useState } from 'react';
 import useDriver from '../../hooks/useDriver';
-import { useDispatch } from 'react-redux'; // Importa useDispatch de react-redux
-import './cards.styles.css'; // Importa la hoja de estilos}
+import './cards.styles.css'; // Importa la hoja de estilos
 
-const Cards = ({drivers ,currentPage, handlePageChange}) => {
+const Cards = ({drivers, copyDrivers}) => {
 
   console.log('driverssss:', drivers); // Muestra en consola drivers
   
 
   const {driverName} = useDriver(); // Extrae drivers y driverName del hook useDriver
 
-  const dispatch = useDispatch(); // Extrae dispatch del hook useDispatch
+
 
   return (
     <div className="cards-container"> {/* Aplica la clase cards-container */}
+
     
       {driverName[0] ? (
         driverName.map((drive) => (
@@ -28,7 +29,7 @@ const Cards = ({drivers ,currentPage, handlePageChange}) => {
         ))
         
       ) : (
-        drivers?.map((drive) => (
+        copyDrivers?.map((drive) => (
           <Card
             key={drive.id}
             id={drive.id}

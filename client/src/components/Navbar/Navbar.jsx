@@ -5,15 +5,19 @@ import { cleanDriverName } from '../../Redux/Actions/actions';
 import { useDispatch } from 'react-redux';
 import { paginateDrivers } from '../../Redux/Actions/actions';
 import { page } from '../../Redux/Actions/actions';
+import useDriver from '../../hooks/useDriver';
+
 
 import './navbar.styles.css';
 
 const Navbar = () => {
+
+  const {drivers} = useDriver();
   const dispatch = useDispatch();
 
   const handleHomeClick = () => {
     dispatch(cleanDriverName());
-    dispatch(paginateDrivers(1, 9));
+    dispatch(paginateDrivers(1, 9, copyDrivers));
     dispatch(page(1));
   };
 

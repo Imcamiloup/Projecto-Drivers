@@ -6,7 +6,8 @@ const initialState = {
     driverDetail : {},
     driverName : [],
     teams: [],
-    currentPage: 1
+    currentPage: 1,
+    copyDrivers: []
 }
 
 function rootReducer(state = initialState, action){
@@ -49,11 +50,6 @@ function rootReducer(state = initialState, action){
                 driverName: [],
             };
 
-        case "NO_RESULTS_FOUND":
-            return {
-                ...state,
-                driverName: [],
-            };
 
         case "GET_TEAMS":
             return {
@@ -66,38 +62,11 @@ function rootReducer(state = initialState, action){
                 ...state,
                 drivers: action.payload,
             };
-        case "ORDER DRIVERS":
-            let orderDrivers;
-            if (payload === "A"){
-                orderDrivers = state.drivers.sort((a,b) => {
-                    if(a.name > b.name){
-                        return 1;
-                    }
-                    if(a.name < b.name){
-                        return -1;
-                    }
-                    return 0;
-                });
-            }
-            if (payload === "D"){
-                orderDrivers = state.drivers.sort((a,b) => {
-                    if(a.name > b.name){
-                        return -1;
-                    }
-                    if(a.name < b.name){
-                        return 1;
-                    }
-                    return 0;
-                });
-            }
-            return {
-                ...state,
-                drivers: orderDrivers
-            };
+        
         case "PAGINATE_DRIVERS":
             return {
                 ...state,
-                drivers: action.payload
+                copyDrivers: action.payload
             };
         case "CURRENT_PAGE":
             return {

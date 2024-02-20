@@ -10,6 +10,7 @@ const FILTER_BY_TEAM = 'FILTER_BY_TEAM';
 const ORDER_DRIVERS = 'ORDER_DRIVERS';
 const  PAGINATE_DRIVERS = 'PAGINATE_DRIVERS';
 const CURRENT_PAGE = 'CURRENT_PAGE';
+const FILTER_BY_ID = 'FILTER_BY_ID';
 
 export const getDrivers = () => {
     return function(dispatch){
@@ -28,12 +29,7 @@ export const addDriver = (driver) => {
     }
 }
 
-export const deleteDriver = (id) => {
-    return {
-        type: DELETE_DRIVER,
-        payload: id
-    }
-}
+
 
 export const getDriverDetail = (id) => {
     return function(dispatch){
@@ -79,11 +75,31 @@ export const cleanDriverName = () => {
     }
 }
 
-export const filterByTeam =  (team) => {
+
+export const filterByTeam =  (team, drivers) => {
 
     return function(dispatch){
 
-    fetch('http://localhost:3001/drivers')
+        try{
+            if(team === 'All'){
+                dispatch({type: FILTER_BY_TEAM, payload: drivers})
+            }
+            else{
+                const driversFilter = drivers.filter((driver) => {
+                    return driver.Teams.some((t) => t.name === team);
+                });
+                dispatch({type: FILTER_BY_TEAM, payload: driversFilter})
+            }
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+}
+
+
+
+    /*fetch('http://localhost:3001/drivers')
     .then(response => response.json())
     .then(data => {
         const driversFilter =[];
@@ -97,12 +113,22 @@ export const filterByTeam =  (team) => {
         console.log('driversFilter:',driversFilter);
         dispatch({type: FILTER_BY_TEAM, payload: driversFilter})   
     })}
-}
+}*/
 
-export const paginateDrivers = (page, pageSizes) => {
-
+export const paginateDrivers = (page, pageSizes, drivers) => {
     return function(dispatch){
-        fetch('http://localhost:3001/drivers')
+
+        try{
+            const startIndex = (page - 1) * pageSizes;
+            const paginatedDrivers = drivers.slice(startIndex, startIndex + pageSizes);
+            dispatch({type: PAGINATE_DRIVERS, payload: paginatedDrivers})
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+}
+      /*  fetch('http://localhost:3001/drivers')
         .then(response => response.json())
         .then(data => {
             const startIndex = (page - 1) * pageSizes;
@@ -110,7 +136,7 @@ export const paginateDrivers = (page, pageSizes) => {
             dispatch({type: PAGINATE_DRIVERS, payload: paginatedDrivers})
         })
     }
-}
+}*/
 
 export const page = (pageNumber) => {
     return {

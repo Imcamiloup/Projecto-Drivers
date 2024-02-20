@@ -1,6 +1,4 @@
 import React from 'react';
-import Form from '../../components/Login/Login';
-import Home from '../Home/Home';
 import { Link } from 'react-router-dom';
 import styles from './Landing.module.css';
 
@@ -18,9 +16,9 @@ export default Landing;*/
 const Landing = () => {
     return (
         <div className={styles.Landing}>
-            <h1>¡Bienvenidos!</h1>
+            <h1 className={styles.title}>¡Bienvenidos!</h1>
             <Link to='/home'>
-                <button>Comenzar</button>
+                <button className={styles.customButton}>Comenzar</button>
             </Link>
         </div>
     );

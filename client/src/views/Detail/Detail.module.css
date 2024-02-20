@@ -1,46 +1,71 @@
-.DetailContainer {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px;
+/* Estilos para pantallas de PC */
+@media (min-width: 768px) {
+  .DetailContainer {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+  }
+
+  .DetailLeft {
+    flex: 0 0 auto;
+  }
+
+  .DetailRight {
+    flex: 1;
+    padding-left: 20px;
+  }
+
+  .DetailImage {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .DetailName {
+    margin-top: 10px;
+  }
+
+  .DetailInfo p {
+    margin-bottom: 10px;
+  }
+
+  .DetailLabel {
+    font-weight: bold;
+  }
+
+  .DetailTeams {
+    margin-top: 20px;
+  }
+
+  .DetailTeamName {
+    display: inline-block;
+    margin-right: 10px;
+    background-color: #b42219;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
 }
 
-.DetailLeft {
-  flex: 0 0 auto;
-}
+/* Estilos para dispositivos móviles */
+@media (max-width: 767px) {
+  .DetailContainer {
+    margin: 20px;
+  }
 
-.DetailRight {
-  flex: 1;
-  padding-left: 20px;
-}
+  .DetailImage {
+    width: 100%;
+    max-height: 200px; /* Reducir el tamaño de la imagen para dispositivos móviles */
+    object-fit: cover;
+    border-radius: 8px;
+  }
 
-.DetailImage {
-  width: 100%;
-  max-height: 300px;
-  object-fit: cover;
-  border-radius: 8px;
-}
+  .DetailRight {
+    padding-top: 20px;
+  }
 
-.DetailName {
-  margin-top: 10px;
-}
-
-.DetailInfo p {
-  margin-bottom: 10px;
-}
-
-.DetailLabel {
-  font-weight: bold;
-}
-
-.DetailTeams {
-  margin-top: 20px;
-}
-
-.DetailTeamName {
-  display: inline-block;
-  margin-right: 10px;
-  background-color: #b42219;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 4px;
+  .DetailTeams {
+    margin-top: 10px;
+  }
 }
