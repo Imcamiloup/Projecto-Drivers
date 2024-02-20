@@ -6,7 +6,7 @@ const initialState = {
     driverDetail : {},
     driverName : [],
     teams: [],
-    driversCopy: []
+    currentPage: 1
 }
 
 function rootReducer(state = initialState, action){
@@ -66,7 +66,6 @@ function rootReducer(state = initialState, action){
                 ...state,
                 drivers: action.payload,
             };
-2
         case "ORDER DRIVERS":
             let orderDrivers;
             if (payload === "A"){
@@ -95,13 +94,18 @@ function rootReducer(state = initialState, action){
                 ...state,
                 drivers: orderDrivers
             };
-        case "CHANGE_PAGE":
+        case "PAGINATE_DRIVERS":
+            return {
+                ...state,
+                drivers: action.payload
+            };
+        case "CURRENT_PAGE":
+            console.log('action.payload:', action.payload);
             return {
                 ...state,
                 currentPage: action.payload
-            };
-    
             
+            };         
         default:
             return {
                 ...state

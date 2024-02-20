@@ -3,13 +3,14 @@ import useDriver from '../../hooks/useDriver';
 import './cards.styles.css'; // Importa la hoja de estilos
 
 const Cards = ({drivers}) => {
+
+  console.log('driverssss:', drivers); // Muestra en consola drivers
   
 
   const {driverName} = useDriver(); // Extrae drivers y driverName del hook useDriver
 
- const paginate = (array, page_size, page_number) => {
-  return array.slice((page_number - 1) * page_size, page_number * page_size);
-};
+
+
 
   return (
     <div className="cards-container"> {/* Aplica la clase cards-container */}

@@ -1,45 +1,46 @@
-import React, { useEffect } from 'react';
+import React, { useEffect , useState} from 'react';
 import Cards from '../../components/Cards/Cards';
 import './home.styles.css';
-import {useSelector} from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { filterByTeam, getTeams } from '../../Redux/Actions/actions';
+import {useSelector , useDispatch} from 'react-redux';
+import { filterByTeam, page, getTeams } from '../../Redux/Actions/actions';
 import useDriver from '../../hooks/useDriver';
+
+
 const Home = () => {
 
-    const {drivers} = useDriver();
+    const {drivers, currentPage, teams} = useDriver();
 
-    const teams = useSelector(state => state.teams);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getTeams());
     }, []);
 
-    console.log('teams:',teams)
-
-
-
+    const handlePageChange = (pageNumber) => {
+        dispatch(page(pageNumber));
+    };
     
-
-
-
 
     return (
         <div className='home'>
             <h1 className='home-title'> Home</h1>
-            <select onChange={(event)=>{
-                dispatch(filterByTeam(event.target.value));
-            }} >
-
-                {teams?.map((team) => 
+            <div className="select-container">
+                <span>Filtrar por equipo:</span>
+                <select onChange={(event) => {
+                    dispatch(filterByTeam(event.target.value));
+                }}>
+                {teams?.map((team) =>
                     <option key={team.id} value={team.name}>
-                        
                         {team.name}
                     </option>
                 )}
-
             </select>
+        </div>
+            <div className="pagination">
+                <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>Previous</button>
+                <span>{currentPage}</span>
+                <button onClick={() => handlePageChange(currentPage + 1)}   >Next</button>
+            </div>
             <Cards  drivers = {drivers}  />
         </div>
     );

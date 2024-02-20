@@ -1,17 +1,20 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDriverDetail, cleanDriverDetail, getDrivers} from "./../Redux/Actions/actions";
+import { getDriverDetail, cleanDriverDetail, getDrivers , paginateDrivers} from "./../Redux/Actions/actions";
 
 const useDriver = () => {
 
     const { id } = useParams();
 
+    
+
     const driverName = useSelector((state) => state.driverName);
     const driver = useSelector((state) => state.driverDetail);
     const drivers = useSelector((state) => state.drivers);
+    const teams = useSelector(state => state.teams);
     const currentPage = useSelector((state) => state.currentPage);
-    const driversPerPage = useSelector((state) => state.driversPerPage);
+
     
     const dispatch = useDispatch();
 
@@ -20,7 +23,7 @@ const useDriver = () => {
         return () => {
           dispatch(cleanDriverDetail());
         };
-    }, [dispatch]);
+    }, []);
 
     useEffect(() => {
         dispatch(getDriverDetail(id));
@@ -30,6 +33,13 @@ const useDriver = () => {
         };
       }, [dispatch, id]);
 
+      useEffect(() => {
+        // Paginar los conductores cada vez que currentPage cambia
+        const pageSize = 9;
+        console.log('currentPage4:', currentPage);
+        dispatch(paginateDrivers(currentPage, pageSize));
+    }, [currentPage]);
+
     
   
 
@@ -37,6 +47,8 @@ const useDriver = () => {
         driverName,
         drivers,
         driver,
+        teams,
+        currentPage
     }
 };
 

@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 const GET_DRIVERS = 'GET_DRIVERS';
 const ADD_DRIVER = 'ADD_DRIVER';
 const DELETE_DRIVER = 'DELETE_DRIVER';
@@ -10,7 +8,8 @@ const CLEAN_DRIVER_NAME = 'CLEAN_DRIVER_NAME';
 const GET_TEAMS = 'GET_TEAMS';
 const FILTER_BY_TEAM = 'FILTER_BY_TEAM';
 const ORDER_DRIVERS = 'ORDER_DRIVERS';
-const CHANGE_PAGE = 'CHANGE_PAGE';
+const  PAGINATE_DRIVERS = 'PAGINATE_DRIVERS';
+const CURRENT_PAGE = 'CURRENT_PAGE';
 
 export const getDrivers = () => {
     return function(dispatch){
@@ -81,7 +80,6 @@ export const cleanDriverName = () => {
 }
 
 export const filterByTeam =  (team) => {
-    console.log('team:',team)
 
     return function(dispatch){
 
@@ -91,8 +89,6 @@ export const filterByTeam =  (team) => {
         const driversFilter =[];
         data.map((driver) => {
             driver.Teams.map((t) => {
-                console.log ('driver.Teams:',t.name)
-                console.log(t.name === team)
                 if(t.name === team){
                     driversFilter.push(driver);
                 }
@@ -103,6 +99,28 @@ export const filterByTeam =  (team) => {
     })}
 }
 
+export const paginateDrivers = (page, pageSizes) => {
+
+    return function(dispatch){
+        fetch('http://localhost:3001/drivers')
+        .then(response => response.json())
+        .then(data => {
+            const startIndex = (page - 1) * pageSizes;
+            const paginatedDrivers = data.slice(startIndex, startIndex + pageSizes);
+            console.log('paginatedDrivers:', paginatedDrivers);
+            dispatch({type: PAGINATE_DRIVERS, payload: paginatedDrivers})
+        })
+    }
+}
+
+export const page = (pageNumber) => {
+    console.log('pageNumber:', pageNumber);
+    return {
+        type: CURRENT_PAGE,
+        payload: pageNumber
+    }
+}
+
 export const orderDrivers = (order) => {
     return {
         type: ORDER_DRIVERS,
@@ -111,8 +129,4 @@ export const orderDrivers = (order) => {
 }
 
 
-export const changePage = (pageNumber) => ({
-    type: CHANGE_PAGE,
-    payload: pageNumber,
-  });
   
